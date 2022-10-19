@@ -50,21 +50,46 @@ function kakaoLogout() {
       Kakao.Auth.setAccessToken(undefined)
     }
   }  
+function kakaoLoginPro(response){
+	var data = {id:response.id,email:response.kakao_account.email}
+	$.ajax({
+		type : 'POST',
+		url : '/user/kakaoLoginPro.do',
+		data : data,
+		dataType : 'json',
+		success : function(data){
+			console.log(data)
+			if(data.JavaData == "YES"){
+				alert("로그인되었습니다.");
+				location.href = '/user/usermain.do'
+			}else if(data.JavaData == "register"){
+				$("#kakaoEmail").val(response.kakao_account.email);
+				$("#kakaoId").val(response.id);
+				$("#kakaoForm").submit();
+			}else{
+				alert("로그인에 실패했습니다");
+			}
+			
+		},
+		error: function(xhr, status, error){
+			alert("로그인에 실패했습니다."+error);
+		}
+	});
 </script>
 <meta charset="EUC-KR">
-<title>Login</title>
+<title>TRAVELER_Login</title>
 </head>
 <body style="align:center">
 <div align="center">
 <div style="background-color : ; width : 50%;  margin-bottom : 20% ">
 	<form style="align : center">
-    <img class="mb-4" src="TRAVELING.png"  width="50%" height="100" margin-top=-25spx>
+    <a href="index.jsp"><img class="mb-4" src="TRAVELING.png"  width="50%" height="200" margin-top=-25spx ></a>
    
  	<div style="padding:20px 28px; border:2px solid ; border-color:#BBBBBB; border-radius:20px 20px 20px 20px"  role="tabpanel" aria-controls="loinid" >
     	<div style="border-radis:6px 6px 0 0; box-shadow:none; display:table;table-layout:fixed;width:100%;padding:14px 17px 13px;box-sizing:border-box">
                                     <div style="border-radius:6px 6px 0 0; box-shadow : none;display:table;table-layout:fixed;width:100%;padding:14px 17px 13px;box-sizing:border-box; position:relative;height:100%;border:1px solid;text-align:left;" id="id_line">
                                         <div style="display:table-cell;width:24px;vertical-align:middle;" id="id_cell">
-                                            <img src="icon_people.png" style="width:100%; height:100%; padding-right:50px">
+                                            <img src="icon_people.png" style="width:100%; height:100%; padding-right:50px;">
                                                 <span style="position:absolute;clip:rect(0 0 0 0); width:1px;height:1px;margin:-1px;overflow:hidden;">ID</span>
                                             </span> 
                                         </div>
@@ -86,7 +111,7 @@ function kakaoLogout() {
       </label>
     </div>
     <br>
-    <button class="w-100 btn btn-lg btn-primary" type="submit" style="display:block; width : 90%; padding : 13px 10px 13px; border-color:#87cefa; background-color : #87cefa; box-sizing : border-box"><span style="font-size : 20px; font-weight:700; line-height:24px;color:#fff">Login</span></button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" style="display:block; width : 90%; padding : 13px 10px 13px; border-color:#87cefa; background-color : #87cefa; box-sizing : border-box"><span style="font-size : 20px; font-weight:700; line-height:24px;color:#fff; border-radius:12px;">Login</span></button>
     <br><br><br>
   </form>
 

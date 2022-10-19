@@ -6,6 +6,34 @@
 <link rel="stylesheet" href="/Web_project1/bootstrap-5.1.3-dist/css/uikit.min.css">
 <meta charset="EUC-KR">
 <title>TRAVELER</title>
+<script type="text/javascript">
+
+ function keyword_check(){
+
+  if(document.search.keyword.value==''){ //검색어가 없을 경우  
+
+  alert('검색어를 입력하세요'); //경고창 띄움 
+
+  document.search.keyword.focus(); //다시 검색창으로 돌아감 
+
+  return false; 
+
+  }
+
+  else return true;
+
+ }
+ 
+ function postKeyword(){
+	 var addr = 'search.jsp'
+	 const var kw = document.getElementById("keyword").value;
+	 localStorage.setItem('key',kw);
+	 alert(kw);
+	 location.href = addr.concat(kw);
+ }
+
+</script>
+
 </head>
 <body>
 <section>
@@ -40,25 +68,25 @@
         </ul>
       </div>
       </section>
-      <style>
-      	.back {
-      		background-image:url('C:\Users\jeong\OneDrive\바탕 화면\city.gif');
-      		
-      	}
-      </style>
+
       <section class="py-5 text-center container" ref="sl1" class="back">
     <div class="row py-lg-5" ref="sticky-container" >
       <div class="col-lg-6 col-md-8 mx-auto" ref="scdown" >
-        <h1 class="fw-light" >나만의 여행 플래너 TRAVELER!</h1>
+        <h1 class="fw-light">나만의 여행 플래너 TRAVELER!</h1>
         <p class="lead text-muted">쉽고 빠르게 여행 계획하세요</p>
       </div>
       <div class="card-body row no-gutters align-items-center">
       <div class="col-auto"> 
       <i class="fas fa-search h4 text-body"></i>
-      </div><div class="col"> 
-      <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="시,군,구를 검색해보세요."></div><div class="col-auto"> 
-      <button class="btn btn-lg btn-success" type="submit">Search</button>
       </div>
+	<div class="col" style = "width:90%">
+      <form name="search"  method = "post" action ="search.jsp" enctype = "utf-8" >
+      <input class="form-control form-control-lg form-control-borderless" style="width:90%; margin:auto; margin-right:0px; float:left; "  type="search" placeholder="시,군,구를 검색해보세요." name="keyword">
+      <button class="btn btn-lg btn-success" type="submit" value="search" onclick="postKeyword()" style = "float:left; margin-left:1%; border-color:#87cefa;background-color:#87cefa;">Search</button>
+      </form>	
+      </div>
+
+      
       </div>
     </div>
   </section>
