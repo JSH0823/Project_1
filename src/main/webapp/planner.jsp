@@ -10,7 +10,7 @@
 </head>
 <body>
 <section>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Tenth navbar example">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Tenth navbar example">
     <div class="container-fluid" id='wrap'>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample08" aria-controls="navbarsExample08" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -25,7 +25,7 @@
             <a class="nav-link" href="index.jsp">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="planner.jsp" background-color="blue">Planner</a>
+            <a class="nav-link" href="planner.jsp" style="background-color:gray;">Planner</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="search.jsp">Search</a>
@@ -40,12 +40,14 @@
           </li>
         </ul>
       </div>
+      </div>
+      </nav>
       </section>
       <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
     <div class="col-md-5 p-lg-5 mx-auto my-5">
       <h1 class="display-4 fw-normal" style="font-weight:bolder;">TRAVELER PLANNER</h1>
       <p class="lead fw-normal">여행 가기 전! 나만의 여행 스케줄을 작성해보세요.<br>언제, 어디에서나 편하게!</p>
-      <a class="btn btn-outline-secondary" style="width:150px;" href="#">Create Planner</a>
+      <a class="btn btn-outline-secondary" style="width:150px;" href="CreateP.jsp">Create Planner</a>
       <a class="btn btn-outline-secondary" style="width:150px;" href="#">View My Planer</a>
     </div>
     <div class="product-device shadow-sm d-none d-md-block" style="position:absolute;right:10%;bottom:-30%;width:300px;height:540px;background-color:#333;border-radius:21px;transform:rotate(30deg);display:block!important;box-shadow:0 .125rem .25rem rgba(0,0,0,.075)!important;">
@@ -71,8 +73,6 @@
       <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
     </div>
   </div>
-      
-     
-      
+       
 </body>
 </html>

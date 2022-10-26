@@ -106,12 +106,15 @@ if(localStorage.getItem('key')){
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
-    <div id="menu_wrap" class="bg_white">
+    <div id="menu_wrap" style="width:25%;" class="bg_white">
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
-                <% request.setCharacterEncoding("utf-8"); 
-                String id = request.getParameter("keyword"); %>
+                <% 
+                request.setCharacterEncoding("utf-8"); 
+                String id = request.getParameter("keyword");
+                if (id == null) id = "경주";
+                %>
                 <script>
                 	var data = $(#id).val();
                 	alert(data);
@@ -226,7 +229,7 @@ function displayPlaces(places) {
                 displayInfowindow(marker, title);
             });
 
-            kakao.maps.event.addListener(marker, 'mouseout', function() {
+            kakao.maps.event.addListener(marker, 'click', function() {
                 infowindow.close();
             });
 
@@ -337,7 +340,7 @@ function displayPagination(pagination) {
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 // 인포윈도우에 장소명을 표시합니다
 function displayInfowindow(marker, title) {
-    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>'+ '<a href="planner.jsp" style="color:blue" target="_blank"><b>일정 생성  </b></a><a href="index.jsp" style="color:blue" target="_blank"><b>상세 보기</b></a>';
+    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>'+ '<a location.href="planner.jsp" style="color:blue" target="_blank"><b>일정 생성  </b></a><a href="index.jsp" style="color:blue" target="_blank"><b>상세 보기</b></a>';
 
     infowindow.setContent(content);
     infowindow.open(map, marker);
