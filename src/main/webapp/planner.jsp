@@ -47,8 +47,8 @@
     <div class="col-md-5 p-lg-5 mx-auto my-5">
       <h1 class="display-4 fw-normal" style="font-weight:bolder;">TRAVELER PLANNER</h1>
       <p class="lead fw-normal">여행 가기 전! 나만의 여행 스케줄을 작성해보세요.<br>언제, 어디에서나 편하게!</p>
-      <a class="btn btn-outline-secondary" style="width:150px;" href="CreateP.jsp">Create Planner</a>
-      <a class="btn btn-outline-secondary" style="width:150px;" href="#">View My Planer</a>
+      <a class="btn btn-outline-secondary" style="width:150px;" href="MainForm.jsp">Create Planner</a>
+      <a class="btn btn-outline-secondary" style="width:150px;" href="viewP.jsp">View My Planer</a>
     </div>
     <div class="product-device shadow-sm d-none d-md-block" style="position:absolute;right:10%;bottom:-30%;width:300px;height:540px;background-color:#333;border-radius:21px;transform:rotate(30deg);display:block!important;box-shadow:0 .125rem .25rem rgba(0,0,0,.075)!important;">
     	<div style="position:absolute;top:10%;rigth:10px;bottom:10%;left:10px;background-color:rgba(255, 255, 255, .1);border-radius:5px;box-sizing:border-box;"></div>

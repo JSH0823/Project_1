@@ -39,23 +39,23 @@ function changeMap(){
 <div style="border:2px solid gray;padding:10px;padding-left:20px;width:80%;justify-content:center;text-align:center;display:flex;margin-left:170px;" id="restaurant">
 <div class="form-check form-check-inline" >
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-  <label class="form-check-label" for="inlineRadio1">카페</label>
+  <label class="form-check-label" for="inlineRadio1">박물관</label>
 </div>
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-  <label class="form-check-label" for="inlineRadio2">한식</label>
+  <label class="form-check-label" for="inlineRadio2">식물원</label>
 </div>
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-  <label class="form-check-label" for="inlineRadio3">중식</label>
+  <label class="form-check-label" for="inlineRadio3">문화</label>
 </div>
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-  <label class="form-check-label" for="inlineRadio3">양식</label>
+  <label class="form-check-label" for="inlineRadio3">자연</label>
 </div>
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-  <label class="form-check-label" for="inlineRadio3">주점</label>
+  <label class="form-check-label" for="inlineRadio3">쇼핑</label>
 </div>
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">

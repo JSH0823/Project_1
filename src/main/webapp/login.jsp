@@ -1,16 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<!--<ul>
-	<li onclick="kakaoLogout();">
-      <a href="javascript:void(0)">
-          <span>카카오 로그아웃</span>
-      </a>
-	</li>
-</ul>-->
 
+<meta charset="UTF-8">
 <!-- 카카오 스크립트 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
@@ -24,6 +18,11 @@ function kakaoLogin() {
           url: '/v2/user/me',
           success: function (response) {
         	  console.log(response)
+        	  var email = response['kakao_account']['email']
+        	  var nickname = response['properties']['nickname']
+        	  console.log(response);
+        	  alert("로그인 되었습니다");
+        	  location.href="index.jsp?e_mail="+email+"&nickname="+nickname;
           },
           fail: function (error) {
             console.log(error)
@@ -35,13 +34,29 @@ function kakaoLogin() {
       },
     })
   }
+function formSubmit(){
+	var params = jQuery('#response').serialize();
+	jQuery.ajax({
+		url : 'information.jsp',
+		type : 'POST',
+		data : response,
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        dataType: 'html',
+        success: function (res) {
+            alert("완료");
+        }
+		
+	})
+}
 //카카오로그아웃  
 function kakaoLogout() {
     if (Kakao.Auth.getAccessToken()) {
       Kakao.API.request({
         url: '/v1/user/unlink',
         success: function (response) {
-        	console.log(response)
+        	console.log()
+        	alert("로그아웃 되었습니다.");
+        	location.href="index.jsp";
         },
         fail: function (error) {
           console.log(error)
@@ -75,52 +90,40 @@ function kakaoLoginPro(response){
 			alert("로그인에 실패했습니다."+error);
 		}
 	});
+}
 </script>
 <meta charset="EUC-KR">
 <title>TRAVELER_Login</title>
 </head>
-<body style="align:center">
+<body style="align:center;background-color:lightgray;">
 <div align="center">
-<div style="background-color : ; width : 50%;  margin-bottom : 20% ">
-	<form style="align : center">
-    <a href="index.jsp"><img class="mb-4" src="TRAVELING.png"  width="50%" height="200" margin-top=-25spx ></a>
-   
- 	<div style="padding:20px 28px; border:2px solid ; border-color:#BBBBBB; border-radius:20px 20px 20px 20px"  role="tabpanel" aria-controls="loinid" >
-    	<div style="border-radis:6px 6px 0 0; box-shadow:none; display:table;table-layout:fixed;width:100%;padding:14px 17px 13px;box-sizing:border-box">
-                                    <div style="border-radius:6px 6px 0 0; box-shadow : none;display:table;table-layout:fixed;width:100%;padding:14px 17px 13px;box-sizing:border-box; position:relative;height:100%;border:1px solid;text-align:left;" id="id_line">
-                                        <div style="display:table-cell;width:24px;vertical-align:middle;" id="id_cell">
-                                            <img src="icon_people.png" style="width:100%; height:100%; padding-right:50px;">
-                                                <span style="position:absolute;clip:rect(0 0 0 0); width:1px;height:1px;margin:-1px;overflow:hidden;">ID</span>
-                                            </span> 
-                                        </div>
-                                        <input type="text" id="id" name="id" placeholder="ID" title="ID" style="display:table-cell;padding-right:30px;position:relative;width:100%;font-size:16px;font-weight:400;line-height:19px;letter-spacing:-.5px;color:#222;box-sizing:border-box;z-index:4" maxlength="41" value="">
-                                    </div>
-                                    <div style="border-radius:6px 6px 0 0; box-shadow : none;display:table;table-layout:fixed;width:100%;padding:14px 17px 13px;box-sizing:border-box; position:relative;height:100%;border:1px solid;text-align:left;" id="pw_line">
-                                        <div style="display:table-cell;width:24px;vertical-align:middle;" id="pw_cell">
-                                            <img src="icon_lock.png" style="width:100%; height:100%">
-                                                <span style="position:absolute;clip:rect(0 0 0 0); width:1px;height:1px;margin:-1px;overflow:hidden;">Password</span>
-                                            </span>
-                                        </div>
-                                        <input type="password" id="pw" name="pw" placeholder="Password" title="Password" style="display:table-cell;padding-right:30px;position:relative;width:100%;font-size:16px;font-weight:400;line-height:19px;letter-spacing:-.5px;color:#222;box-sizing:border-box;z-index:4" maxlength="16">
-                                    </div>
-                                </div>
+<div style="width : 50%;  margin-bottom : 20% ">	
+    <a href="index.jsp"><img class="mb-4" src="TRAVELING.png"  width="50%" height="200" margin-top=-25spx ></a>   
+ 	<div style="padding:20px 28px; border:2px solid ; border-color:#BBBBBB; border-radius:20px 20px 20px 20px;background-color:white;"  role="tabpanel" aria-controls="loinid" >                       
 	<br>
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <br>
-    <button class="w-100 btn btn-lg btn-primary" type="submit" style="display:block; width : 90%; padding : 13px 10px 13px; border-color:#87cefa; background-color : #87cefa; box-sizing : border-box"><span style="font-size : 20px; font-weight:700; line-height:24px;color:#fff; border-radius:12px;">Login</span></button>
-    <br><br><br>
-  </form>
-
-	<div class="button-login" align ="center" >
-                <a id="kakao-login-btn" >
+    <div class="modal modal-signin position-static d-block bg-secondary py-5"tabindex="-1" role="dialog" id="modalSignin">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+      </div>
+      <div class="modal-body p-5 pt-0">
+          <div class="form-floating mb-3">
+          </div>
+          <div class="button-login" align ="center" style="margin-top:20px;">
+        <a id="kakao-login-btn" >
     <a href="javascript:void(0)"><img src="//k.kakaocdn.net/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="300px" height ="50px" onclick="kakaoLogin();"></img></a>
     </a>
             </div>
-            
+            <div class="button-logout" align="center" style="margin-top:20px;">
+    <a id="kakao-logout-btn">
+    <a href="javascript:void(0)"><button style="width:100px;height:30px;background-color:#FFFFE0;border:2px solid;border-radius:5px;border-color:yellow;"onclick="kakaoLogout()">로그아웃</button></a>
+    </a>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+  </div>	
  </div>
  </div>
 </body>

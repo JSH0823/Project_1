@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import = "java.net.URLDecoder" %>
+<%@ page import = "javax.servlet.RequestDispatcher" %>
 <!DOCTYPE html>
 <html style="height:100%!important;">
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="/Web_project1/bootstrap-5.1.3-dist/css/uikit.min.css">
 <link rel="shortcut icon" href="favicon.ico">
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>TRAVELER</title>
 <script type="text/javascript">
 
@@ -28,7 +30,7 @@
  
  function postKeyword(){
 	 var addr = 'search.jsp'
-	 const var kw = document.getElementById("keyword").value;
+	 let kw = document.getElementById("keyword").value;
 	 localStorage.setItem('key',kw);
 	 alert(kw);
 	 location.href = addr.concat(kw);
@@ -213,19 +215,45 @@ body {
     <link href="cover.css" rel="stylesheet">
   </head>
   <body class="d-flex h-100 text-center text-bg-dark">
+    <%
+    	String email = request.getParameter("e_mail");
+    	String name = request.getParameter("nickname");
+    	
+
+    %>
+   
+    <%
+    	if(email == null) {
+    		name = "로그인해주세요";
+    	}
+    	else if(email != null){
+    		name = name + "님 어서오세요";
+    	}
+    %>
+    
+
     
 <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column image1" style="position:relative;">
   <header class="mb-auto">
     <div>
       <h3 class="float-md-start mb-0" style="font-weight:bolder; padding-left:50px;color:white;">TRAVELER</h3>
       <nav class="nav nav-masthead justify-content-center float-md-end">
+      
+      	
+      	<p style="color:white;text-size:100px;margin-left:30px;margin-right:25px;margin-top:7.5px;"><%=name %></p>
+        
+        
         <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
         <a class="nav-link fw-bold py-1 px-0" href="planner.jsp">Planner</a>
         <a class="nav-link fw-bold py-1 px-0" href="search.jsp">Search</a>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle nav-link fw-bold py-1 px-0" style="margin-left:1rem;" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false">My</a>
             <ul class="dropdown-menu " aria-labelledby="dropdown08">
-              <li><a class="dropdown-item" href="restaurant.jsp">Information</a></li>
+            <form action ="Info" method = "post">
+            	<input type="hidden" name = "email" value = "<%=email %>">
+            	<input type="hidden" name = "name" value = "<%=name %>">
+              <li><button class="dropdown-item">Information</button></li>
+          	</form>
               <li><a class="dropdown-item" href="#">Like</a></li>
               <li><a class="dropdown-item" href="login.jsp">Login/Logout</a></li>
             </ul>
