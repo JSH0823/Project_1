@@ -5,8 +5,10 @@
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="/Web_project1/bootstrap-5.1.3-dist/css/uikit.min.css">
+<link rel="shortcut icon" href="/img/favicon.ico">
 <meta charset="EUC-KR">
 <title>TRAVELER_Planner</title>
+<% String email = (String)request.getAttribute("email"); %>
 </head>
 <body>
 <section>
@@ -33,8 +35,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false">My</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown08">
-              <li><a class="dropdown-item" href="#">Information</a></li>
-              <li><a class="dropdown-item" href="#">Like</a></li>
+              <li><a class="dropdown-item" href="information.jsp">Information</a></li>
               <li><a class="dropdown-item" href="login.jsp">Login/Logout</a></li>
             </ul>
           </li>
@@ -47,8 +48,14 @@
     <div class="col-md-5 p-lg-5 mx-auto my-5">
       <h1 class="display-4 fw-normal" style="font-weight:bolder;">TRAVELER PLANNER</h1>
       <p class="lead fw-normal">여행 가기 전! 나만의 여행 스케줄을 작성해보세요.<br>언제, 어디에서나 편하게!</p>
-      <a class="btn btn-outline-secondary" style="width:150px;" href="MainForm.jsp">Create Planner</a>
-      <a class="btn btn-outline-secondary" style="width:150px;" href="viewP.jsp">View My Planer</a>
+      <form action="GoCreatePlan" method="post">
+      	<input type='hidden' value='<%=email %>' name = "email">
+      	<button class="btn btn-outline-secondary" style="width:150px;">Create Planner</button>
+      </form>
+      <form action="GoViewPlan" method="post">
+      <input type='hidden' value='<%=email %>' name = "email">
+      <button class="btn btn-outline-secondary" style="width:150px;">View My Planer</button>
+      </form>
     </div>
     <div class="product-device shadow-sm d-none d-md-block" style="position:absolute;right:10%;bottom:-30%;width:300px;height:540px;background-color:#333;border-radius:21px;transform:rotate(30deg);display:block!important;box-shadow:0 .125rem .25rem rgba(0,0,0,.075)!important;">
     	<div style="position:absolute;top:10%;rigth:10px;bottom:10%;left:10px;background-color:rgba(255, 255, 255, .1);border-radius:5px;box-sizing:border-box;"></div>
@@ -75,4 +82,5 @@
   </div>
        
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </html>

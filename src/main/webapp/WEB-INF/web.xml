@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-  <Connector URIEncoding="UTF-8"></Connector>
   <servlet>
     <description></description>
     <display-name>Info</display-name>
@@ -20,6 +19,64 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-  
+  <servlet>
+    <description></description>
+    <display-name>Db_con</display-name>
+    <servlet-name>Db_con</servlet-name>
+    <servlet-class>db.Db_con</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Db_con</servlet-name>
+    <url-pattern>/Db_con</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Planer</display-name>
+    <servlet-name>Planer</servlet-name>
+    <servlet-class>db.Planer</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Planer</servlet-name>
+    <url-pattern>/Planer</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>search_day</display-name>
+    <servlet-name>search_day</servlet-name>
+    <servlet-class>db.search_day</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>search_day</servlet-name>
+    <url-pattern>/search_day</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Goinfo</display-name>
+    <servlet-name>Goinfo</servlet-name>
+    <servlet-class>db.Goinfo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Goinfo</servlet-name>
+    <url-pattern>/Goinfo</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GoCreatePlan</display-name>
+    <servlet-name>GoCreatePlan</servlet-name>
+    <servlet-class>db.GoCreatePlan</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoCreatePlan</servlet-name>
+    <url-pattern>/GoCreatePlan</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GoViewPlan</display-name>
+    <servlet-name>GoViewPlan</servlet-name>
+    <servlet-class>db.GoViewPlan</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoViewPlan</servlet-name>
+    <url-pattern>/GoViewPlan</url-pattern>
+  </servlet-mapping>
 </web-app>

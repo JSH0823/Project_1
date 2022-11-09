@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="/Web_project1/bootstrap-5.1.3-dist/css/uikit.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<link rel="shortcut icon" href="/img/favicon.ico">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="EUC-KR">
 <title>TRAVELER_Create</title>
@@ -510,13 +511,13 @@ function change_map() {
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="water.jpg" style="height:100%;" class="d-block w-100" alt="...">
+      <img src="/img/water.jpg" style="height:100%;" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="home.jpg" class="d-block w-100" alt="...">
+      <img src="/img/home.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="grass.jpg" class="d-block w-100" alt="...">
+      <img src="/img/grass.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

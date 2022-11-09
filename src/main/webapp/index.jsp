@@ -2,12 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ page import = "java.net.URLDecoder" %>
 <%@ page import = "javax.servlet.RequestDispatcher" %>
+<%@ page import = "db.Db_func" %>
+<%@ page import = "java.sql.*" %>
 <!DOCTYPE html>
 <html style="height:100%!important;">
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="/Web_project1/bootstrap-5.1.3-dist/css/uikit.min.css">
-<link rel="shortcut icon" href="favicon.ico">
+<link rel="shortcut icon" href="/img/favicon.ico">
 <meta charset="UTF-8">
 <title>TRAVELER</title>
 <script type="text/javascript">
@@ -47,6 +49,12 @@
 .btn-secondary,
 .btn-secondary:hover,
 .btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+.planner_btn,
+.planner_btn:hover,
+.planner_btn:focus {
   color: #333;
   text-shadow: none; /* Prevent inheritance from `body` */
 }
@@ -214,13 +222,28 @@ body {
     <!-- Custom styles for this template -->
     <link href="cover.css" rel="stylesheet">
   </head>
-  <body class="d-flex h-100 text-center text-bg-dark">
-    <%
-    	String email = request.getParameter("e_mail");
-    	String name = request.getParameter("nickname");
+   <%
+   		Connection conn = null;
+		PreparedStatement pstmt = null;
+   		ResultSet rs = null;
+   %>
+   <%
+    	Db_func df = new Db_func();
+    	String email = (String)request.getAttribute("email");
+    	String name = (String)request.getAttribute("name");
+    	
+    	df.db_connection();
+    	//out.print(df.connect_confirm);
+    	df.db_indata(email);
+    	if(!df.YN){
+    		df.insert_into(email);
+    	}
     	
 
     %>
+  <body class="d-flex h-100 text-center text-bg-dark">
+   
+    
    
     <%
     	if(email == null) {
@@ -244,8 +267,12 @@ body {
         
         
         <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
-        <a class="nav-link fw-bold py-1 px-0" href="planner.jsp">Planner</a>
+        <form action="Goinfo" method="post">
+        	<input type="hidden" name="email" id="email" value = "<%=email %>">
+        	<button  style="background-color:transparent;border-color:transparent;color:rgba(255, 255, 255, .5);margin-left:5px;margin-right:5px;border-bottom:0.25rem solid transparent;"class="nav-link fw-bold py-1 px-0">Planner</button>
+        </form>
         <a class="nav-link fw-bold py-1 px-0" href="search.jsp">Search</a>
+        
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle nav-link fw-bold py-1 px-0" style="margin-left:1rem;" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false">My</a>
             <ul class="dropdown-menu " aria-labelledby="dropdown08">
@@ -254,7 +281,6 @@ body {
             	<input type="hidden" name = "name" value = "<%=name %>">
               <li><button class="dropdown-item">Information</button></li>
           	</form>
-              <li><a class="dropdown-item" href="#">Like</a></li>
               <li><a class="dropdown-item" href="login.jsp">Login/Logout</a></li>
             </ul>
          </li>  

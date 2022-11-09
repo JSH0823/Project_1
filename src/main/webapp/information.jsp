@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="/Web_project1/bootstrap-5.1.3-dist/css/uikit.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+<link rel="shortcut icon" href="/img/favicon.ico">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
 <title>Information</title>
@@ -38,7 +39,6 @@
             <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false">My</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown08">
               <li><a class="dropdown-item" href="information.jsp">Information</a></li>
-              <li><a class="dropdown-item" href="#">Like</a></li>
               <li><a class="dropdown-item" href="login.jsp">Login/Logout</a></li>
             </ul>
           </li>
@@ -53,11 +53,18 @@
     	
     	String name =new String((request.getParameter("name")).getBytes("8859_1"), "UTF-8");
     	name = name.substring(0,3);
+    	
+    	if(e_mail == null){
+    		e_mail = " ";
+    	}
+   		if(name == null){
+   			name = "로그인해주세요";
+   		}
     %>
 <div class="container">
   <main>
     <div class="py-5 text-center">
-      <img class="d-block mx-auto mb-4"  src="TRAVELING.png" alt="" width="200" height="100">
+      <img class="d-block mx-auto mb-4"  src="/img/TRAVELING.png" alt="" width="200" height="100">
     </div>
 
     <div class="row g-5" style="float:left;width:90%;margin-left:250px;">
@@ -77,7 +84,7 @@
               <label for="username" class="form-label">E-MAIL Address</label>
               <div class="input-group has-validation">
                 <span class="input-group-text">@</span>
-                <p style="size:100px;margin-left:30px;margin-top:10px;"><%=request.getAttribute("e_mail") %></p>
+                <p style="size:100px;margin-left:30px;margin-top:10px;"><%=e_mail%></p>
               <div class="invalid-feedback">
                   Your username is required.
                 </div>
@@ -87,7 +94,7 @@
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" style="margin-bottom:100px;"type="submit" >OK</button>
+          <button class="w-100 btn btn-primary btn-lg" style="margin-bottom:100px;"type="submit" location.href="index.jsp">OK</button>
         </form>
       </div>
     </div>

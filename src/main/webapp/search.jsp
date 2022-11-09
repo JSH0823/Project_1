@@ -56,6 +56,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="/Web_project1/bootstrap-5.1.3-dist/css/uikit.min.css">
 <link rel="stylesheet" href="/Web_project1/bootstrap-5.1.3-dist/js/map.js">
+<link rel="shortcut icon" href="/img/favicon.ico">
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de6b6425bc0fad8a53c7e8950b883733&libraries=services"></script>
 <meta charset="EUC-KR">
 <title>TRAVELER_Search</title>
@@ -94,7 +95,6 @@ if(localStorage.getItem('key')){
             <a class="nav-link dropdown-toggle" href="#" id="dropdown08" data-bs-toggle="dropdown" aria-expanded="false">My</a>
             <ul class="dropdown-menu" aria-labelledby="dropdown08">
               <li><a class="dropdown-item" href="#">Information</a></li>
-              <li><a class="dropdown-item" href="#">Like</a></li>
               <li><a class="dropdown-item" href="login.jsp">Login/Logout</a></li>
             </ul>
           </li>
@@ -707,4 +707,5 @@ function removeEvent() {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </html>
