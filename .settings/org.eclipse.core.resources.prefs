@@ -1,5 +1,8 @@
 eclipse.preferences.version=1
 encoding//bootstrap-5.1.3-dist/css/uikit.min.css=UTF-8
-encoding//src/main/webapp/index.jsp=UTF-8
+encoding//src/main/webapp/Header.jsp=UTF-8
 encoding//src/main/webapp/login.jsp=UTF-8
+encoding//src/main/webapp/place.jsp=UTF-8
+encoding//src/main/webapp/tPlan.jsp=UTF-8
+encoding//src/main/webapp/viewP.jsp=UTF-8
 encoding/<project>=UTF-8
