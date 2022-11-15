@@ -70,7 +70,7 @@
     <div class="row g-5" style="float:left;width:90%;margin-left:250px;">
       <div class="col-md-7 col-lg-8">
         <h4 class="mb-3">Information</h4>
-        <form class="needs-validation" action="index.jsp">
+        
           <div class="row g-3">
             <div class="col-sm-6">
               <label for="firstName" class="form-label">Name</label>
@@ -91,10 +91,11 @@
               </div>
             </div>
 
-
+			<form class="needs-validation" action="Db_con" method = 'post'>
           <hr class="my-4">
-
-          <button class="w-100 btn btn-primary btn-lg" style="margin-bottom:100px;"type="submit" location.href="index.jsp">OK</button>
+          	<input type='hidden' value='<%=name %>' name = "nickname">
+			<input type='hidden' value='<%=e_mail %>' name = "email">
+          <button class="w-100 btn btn-primary btn-lg" style="margin-bottom:100px;"type="submit">OK</button>
         </form>
       </div>
     </div>

@@ -63,13 +63,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" sizes="16x16">
 </head>
 <body>
-<script>
-	
-if(localStorage.getItem('key')){
-	 
-	}
-	
-</script>
+<% String email = (String)request.getAttribute("email");%>
 <section>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Tenth navbar example">
     <div class="container-fluid" id='wrap'>
@@ -85,9 +79,10 @@ if(localStorage.getItem('key')){
           <li class="nav-item">
             <a class="nav-link" href="index.jsp">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="planner.jsp">Planner</a>
-          </li>
+          <form action="Goinfo" method="post">
+        	<input type="hidden" name="email" id="email" value = "<%=email %>">
+        	<button  style="background-color:transparent;border-color:transparent;color:rgba(255, 255, 255, .5);margin-left:5px;margin-right:5px;border-bottom:0.25rem solid transparent;"class="nav-link fw-bold py-1 px-0">Planner</button>
+        </form>
           <li class="nav-item">
             <a class="nav-link" href="search.jsp">Search</a>
           </li>
@@ -130,7 +125,7 @@ if(localStorage.getItem('key')){
         <div id="pagination"></div>
     </div>
     <div class="custom_pencontrol radius_pen">
-    	<span onclick="deleteClickLine();showDistance();deleteDistnce();displayCircleDot();deleteDircleDot();getTimeHTML();" ondbclick="removeEvent()" title="거리 측정"><img src="ruler.png" style="width:35px; height:43px;padding:1px 0px;"></span>
+    	<span onclick="deleteClickLine();showDistance();deleteDistnce();displayCircleDot();deleteDircleDot();getTimeHTML();" ondbclick="removeEvent()" title="거리 측정"><img src="/img/ruler.png" style="width:35px; height:43px;padding:1px 0px;"></span>
     </div>
 </div>
 
@@ -341,7 +336,7 @@ function displayPagination(pagination) {
 // 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
 // 인포윈도우에 장소명을 표시합니다
 function displayInfowindow(marker, title) {
-    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>'+ '<a location.href="planner.jsp" style="color:blue" target="_blank"><b>일정 생성  </b></a><a href="index.jsp" style="color:blue" target="_blank"><b>상세 보기</b></a>';
+    var content = '<div style="padding:5px;z-index:1;">' + title + '</div>';
 
     infowindow.setContent(content);
     infowindow.open(map, marker);

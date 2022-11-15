@@ -1,10 +1,7 @@
 package db;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.URLDecoder;
-import db.Db_func;
-import db.Transfer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,15 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Planer
+ * Servlet implementation class Delet
  */
-public class Planer extends HttpServlet {
+public class Delet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Planer() {
+    public Delet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,24 +36,18 @@ public class Planer extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 		Transfer tf = new Transfer(request, response);
-		//PrintWriter out = response.getWriter();
 		
-		//String email = URLDecoder.decode((String)request.getParameter("email"),"UTF-8");
-		String place = URLDecoder.decode((String)request.getParameter("place"),"UTF-8");
-		String area = URLDecoder.decode((String)request.getParameter("area"),"UTF-8");
-		String addr = URLDecoder.decode((String)request.getParameter("address"),"UTF-8");
-		String tel = URLDecoder.decode((String)request.getParameter("phone"),"UTF-8");
-		String lat = URLDecoder.decode((String)request.getParameter("lat"),"UTF-8");
-		String lng = URLDecoder.decode((String)request.getParameter("lng"),"UTF-8");
-		String day = URLDecoder.decode((String)request.getParameter("todaybirthday"),"UTF-8");
 		String email = URLDecoder.decode((String)request.getParameter("email"),"UTF-8");
+		String place = URLDecoder.decode((String)request.getParameter("place"),"UTF-8");
+		
+		String day_of = URLDecoder.decode((String)request.getParameter("day_of"),"UTF-8");
 		
 		request.setAttribute("email",email);
-		request.setAttribute("day",day);
+		
 		Db_func df = new Db_func();
 		df.db_connection();
-		df.schedule_db_insert(area,place,addr,tel,email,lat,lng,day);
-		tf.page("GoCreatePlan");
+		df.schedule_db_remove(place,email,day_of);
+		tf.page("viewP.jsp");
 	}
 
 }

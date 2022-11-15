@@ -27,7 +27,10 @@
             <a class="nav-link" href="index.jsp">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="planner.jsp" style="background-color:gray;">Planner</a>
+          <form action="Goinfo" method="post">
+          	<input type="hidden" name="email" id="email" value = "<%=email %>">
+            <button  style="background-color:transparent;border-color:transparent;color:rgba(255, 255, 255, .5);margin-left:5px;margin-right:5px;border-bottom:0.25rem solid transparent;"class="nav-link fw-bold py-1 px-0">Planner</button>
+            </form>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="search.jsp">Search</a>
@@ -54,7 +57,7 @@
       </form>
       <form action="GoViewPlan" method="post">
       <input type='hidden' value='<%=email %>' name = "email">
-      <button class="btn btn-outline-secondary" style="width:150px;">View My Planer</button>
+      <button class="btn btn-outline-secondary" style="width:150px;">View My Planner</button>
       </form>
     </div>
     <div class="product-device shadow-sm d-none d-md-block" style="position:absolute;right:10%;bottom:-30%;width:300px;height:540px;background-color:#333;border-radius:21px;transform:rotate(30deg);display:block!important;box-shadow:0 .125rem .25rem rgba(0,0,0,.075)!important;">
@@ -67,15 +70,15 @@
   <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3" style="padding-left:1rem!important;margin-top:1rem!important;margin-bottom:1rem!important;display:flex!important;width:100%important;">
     <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden" style="padding-right:3rem!important;padding-left:3rem!important;margin-left:1rem!important;text-align:center!important;overflow:hidden!important;color:#fff!important;background-color:RGBA(33,37,41,var(--bs-bg-opacity,1))!important;width:48%;">
       <div class="my-3 py-3">
-        <h2 class="display-5" style="font-weight:bolder;">다른 사람들은 어떻게 짜지?</h2>
-        <p class="lead">다른 사람들의 스케줄을 참고하여 작성해보세요</p>
+        <h2 class="display-5" style="font-weight:bolder;">간편한 방식으로 계획하자!</h2>
+        <p class="lead">복잡하지 않은! 손쉽고 빠르게 스케줄 작성해보세요</p>
       </div>
       <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
     </div>
     <div class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden" style="width:48%;">
       <div class="my-3 p-3">
-        <h2 class="display-5" style="font-weight:bolder;">여행 스케줄 최적화!</h2>
-        <p class="lead">내가 가고 싶은 곳들만 최적의 스케줄로 작성해보세요</p>
+        <h2 class="display-5" style="font-weight:bolder;">어떤 경로로 어행해야 좋을까?</h2>
+        <p class="lead">최단 시간, 최적의 경로를 추천받아 여행해보세요!</p>
       </div>
       <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
     </div>

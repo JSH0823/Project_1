@@ -55,6 +55,11 @@ public class Db_func {
 		}
 	}
 	
+	public void db_close_notRS() throws SQLException {
+		pstmt.close();
+		conn.close();
+	}
+	
 	public void insert_into(String email) {
 		sql = "INSERT INTO user_info VALUES(?)";
 		
@@ -70,8 +75,8 @@ public class Db_func {
 		}
 	}
 	
-	public void schedule_db_insert(String area, String place, String addr, String tel, String email, String day_of) {
-		sql = "INSERT INTO user_schedule(area,place,addr,tel,email,day_of) VALUES(?,?,?,?,?,?)";
+	public void schedule_db_insert(String area, String place, String addr, String tel, String email, String lat, String lng, String day_of) {
+		sql = "INSERT INTO user_schedule(area,place,addr,tel,email,lat,lng,day_of) VALUES(?,?,?,?,?,?,?,?)";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -80,7 +85,9 @@ public class Db_func {
 			pstmt.setString(3,addr);
 			pstmt.setString(4,tel);
 			pstmt.setString(5, email);
-			pstmt.setString(6,day_of);
+			pstmt.setString(6,lat);
+			pstmt.setString(7,lng);
+			pstmt.setString(8,day_of);
 			int r = pstmt.executeUpdate();
 			if(r>0) {
 				
@@ -103,6 +110,17 @@ public class Db_func {
 		}catch(Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public void schedule_db_remove(String place, String email, String day_of) {
+		sql = "delete from user_schedule where PLACE ='"+place+"' and email = '"+email+"' and day_of = '"+day_of+"'";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

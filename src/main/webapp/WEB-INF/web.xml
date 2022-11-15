@@ -79,4 +79,14 @@
     <servlet-name>GoViewPlan</servlet-name>
     <url-pattern>/GoViewPlan</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Delet</display-name>
+    <servlet-name>Delet</servlet-name>
+    <servlet-class>db.Delet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Delet</servlet-name>
+    <url-pattern>/Delet</url-pattern>
+  </servlet-mapping>
 </web-app>

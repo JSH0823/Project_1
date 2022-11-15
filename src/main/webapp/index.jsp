@@ -229,9 +229,11 @@ body {
    %>
    <%
     	Db_func df = new Db_func();
-    	String email = (String)request.getAttribute("email");
-    	String name = (String)request.getAttribute("name");
-    	
+    	String email;
+    	email= (String)request.getAttribute("email");
+    	String name;
+    	name = (String)request.getAttribute("name");
+    
     	df.db_connection();
     	//out.print(df.connect_confirm);
     	df.db_indata(email);
@@ -300,8 +302,9 @@ body {
       </div>
 	<div class="col" style = "width:90%">
       <form name="search"  method = "post" action ="search.jsp" enctype = "utf-8" >
-      <input class="form-control form-control-lg form-control-borderless" style="width:90%; margin:auto; margin-right:0px; float:left; "  type="search" placeholder="시,군,구를 검색해보세요." name="keyword">
-      <button class="btn btn-lg btn-success" type="submit" value="search" onclick="postKeyword()" style = "float:left; margin-left:1%; border-color:#87cefa;background-color:#87cefa;">Search</button>
+      	<input type="hidden" name = "email" value = "<%=email %>">
+      	<input class="form-control form-control-lg form-control-borderless" style="width:90%; margin:auto; margin-right:0px; float:left; "  type="search" placeholder="시,군,구를 검색해보세요." name="keyword">
+      	<button class="btn btn-lg btn-success" type="submit" value="search" onclick="postKeyword()" style = "float:left; margin-left:1%; border-color:#87cefa;background-color:#87cefa;">Search</button>
       </form>	
       </div>
       </div>

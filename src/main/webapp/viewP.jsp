@@ -3,14 +3,14 @@
     <%@ page import ="db.Db_func" %>
 <!DOCTYPE html>
 <html>
-<head>
+<head profile="http://www.w3.org/2005/10/profile">
 <meta charset="EUC-KR">
 <title>TRAVELER</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="/Web_project1/bootstrap-5.1.3-dist/css/uikit.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
-<link rel="shortcut icon" href="/img/favicon.ico">
+<link rel="icon" href="/img/favicon.ico">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 	#wrap {
@@ -60,9 +60,12 @@
           <li class="nav-item">
             <a class="nav-link" href="index.jsp">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="planner.jsp" style="background-color:gray;">Planner</a>
-          </li>
+          <li>
+           <form action="Goinfo" method="post">
+          	<input type="hidden" name="email" id="email" value = "<%=email %>">
+            <button  style="background-color:transparent;border-color:transparent;color:rgba(255, 255, 255, .5);margin-left:5px;margin-right:5px;border-bottom:0.25rem solid transparent;"class="nav-link fw-bold py-1 px-0">Planner</button>
+            </form>
+            </li>
           <li class="nav-item">
             <a class="nav-link" href="search.jsp">Search</a>
           </li>
@@ -78,15 +81,16 @@
       </div>
       </nav>
       </section>
-      <script type="text/javascript">
+      
+   <!--     <script type="text/javascript">
   	window.onload = function() {
   		today = new Date();
   		console.log("today.toISOString() >>>" + today.toISOString());
   		today = today.toISOString().slice(0, 10);
   		console.log("today >>>> " + today);
   		bir = document.getElementById("todaybirthday");
-  		bir.value = today;
-  	}
+  		bir.value = today.value;
+  	}-->
   </script>
 			<div style="background-color:lightgray;width:100%;height:100%;padding:10px;">
 				<p>이름 : 정수현</p>
@@ -96,7 +100,7 @@
 		<div id="main">
 			<form action="search_day" method="post" style="margin-left:210px;">
       
-					<input type='date'  name = "todaybirthday" id = 'todaybirthday'>
+					<input type='date' value='2022-11-16' name = "todaybirthday" id = 'todaybirthday'>
 					<input type='hidden' value='<%=email %>' name = "email" id = 'email'>
 					<input type="submit" value="검색" >
 				</form>            
