@@ -98,7 +98,7 @@ public class Db_func {
 	}
 	
 	public ResultSet schedule_search_day(String day, String email) {
-		sql = "SELECT * from user_schedule where day_of = '"+day+"' and email = '"+email+"'";
+		sql = "SELECT * from user_schedule where day_of = '"+day+"' and email = '"+email+"' order by ROWNUM ";
 		try {
 			pstmt = conn.prepareStatement(sql,ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			rs = pstmt.executeQuery();

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import= "java.sql.*, db.Db_func, java.util.*, db.Distance ,db.Order" %>
+<%@ page import= "java.sql.*, db.Db_func, java.util.*, db.Distance ,db.Order,db.Transfer" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +9,13 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <%
 	String email = (String)request.getAttribute("email");
+	String name = (String)request.getAttribute("name");
+	String day1 = (String)request.getAttribute("day1");
+	//name = name.substring(0,3);
+	//out.print(name);
 %>
 <script type="text/javascript">
 
@@ -23,6 +27,7 @@ function frm(frm){
 	frm.submit();
 }
 </script>
+
 <%!
 public static double distance(double lat1, double lng1, double lat2, double lng2, String unit) {
 		double theta = lng1-lng2;
@@ -49,6 +54,16 @@ public static double distance(double lat1, double lng1, double lat2, double lng2
 	}
 	
 %>
+
+<style>
+	.imgh {
+		background : url(/img/map.png);
+	}
+	.imgh:hover {
+		background : url(/img/mapclick.png);
+	}
+</style>
+
 </head>
 <body>
 <main class="container">
@@ -63,6 +78,7 @@ LinkedList<String> dis_sort = new LinkedList<String>();
 	ResultSet rs = (ResultSet)request.getAttribute("rs");
 	String day_of, place;
 try{
+	out.print("<table class ='table table-striped' style='background-color:#F5FFFA'>");
 	out.print("<tr>");
 	out.print("<td>");
 	out.print("여행 날짜");
@@ -140,16 +156,52 @@ try{
 </table>
 <% 
 out.print("<br>");
-	out.print("<table class ='table table-striped'>");
-	out.print("<tr> <td>추천 경로</td> </tr>");
+	out.print("<table class ='table table-striped' style='background-color:#F0FFFF'>");
+	out.print("<p style='color:#B0C4DE;font-size:40px;margin-left:380px;font-weight:bolder'>정수현님의 추천 경로입니다</p>");
+	out.print("<tr>");
+	out.print("<td>");
+	out.print("순서");
+	out.print("</td>");
+	out.print("<td>");
+	out.print("관광지명");
+	out.print("</td>");
+	out.print("</tr>");
 	for(int m = 0; m<dis_link.size(); m++){
 		out.print("<tr>");
+		out.print("<td>");
+		out.print(m+1);
+		out.print("</td>");
 		out.print("<td>");
 		out.print(dis_link.get(m).getPlace());
 		out.print("</td>");
 		out.print("</tr>");
 	}
+	Transfer tf = new Transfer(request,response);
+	request.setAttribute("arr", dis_link);
 %>
+ 
+<script>
+	function cm(){
+		var frmmap = document.frmmap;
+		frmmap.action = "Marker";
+		frmmap.method="post";
+		frmmap.submit();
+	}
+</script> 
+<form name='frmmap' action='Marker' method='post'>
+<%
+	for(int i=0; i < dis_link.size(); i++){
+%>
+	<input type='hidden' name= 'len' value = <%=dis_link.size() %> >
+	<input type='hidden' name = 'place<%=i%>' value = <%=dis_link.get(i).getPlace() %>  >
+	<input type='hidden' name = 'lat<%=i%>'  value = <%=dis_link.get(i).getLat() %>>
+	<input type='hidden' name = 'lng<%=i%>'  value = <%=dis_link.get(i).getLng() %>>
+<%
+	}
+%>
+
+ <div class = "imgh" id="map" onclick="cm()" style="width:800px;height:400px;margin-left:200px;"></div>
+</form>
 </main>
 </body>
 </html>

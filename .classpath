@@ -17,5 +17,5 @@
 	<classpathentry kind="lib" path="C:/Users/jeong/Downloads/json-simple-1.1.jar/json-simple-1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jeong/Downloads/json-simple-1.1.1.jar/json-simple-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/jeong/Downloads/sqldeveloper-22.2.1.234.1810-x64/sqldeveloper/jlib/orai18n.jar"/>
-	<classpathentry kind="output" path="build/classes"/>
+	<classpathentry kind="output" path="build/classes/db"/>
 </classpath>

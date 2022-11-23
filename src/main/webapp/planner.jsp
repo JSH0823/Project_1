@@ -6,9 +6,10 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="/Web_project1/bootstrap-5.1.3-dist/css/uikit.min.css">
 <link rel="shortcut icon" href="/img/favicon.ico">
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>TRAVELER_Planner</title>
-<% String email = (String)request.getAttribute("email"); %>
+<% String email = (String)request.getAttribute("email");
+	String name = (String)request.getAttribute("name");%>
 </head>
 <body>
 <section>
@@ -29,6 +30,7 @@
           <li class="nav-item">
           <form action="Goinfo" method="post">
           	<input type="hidden" name="email" id="email" value = "<%=email %>">
+          	<input type="hidden" name="name" id="name" value = "<%=name %>">
             <button  style="background-color:transparent;border-color:transparent;color:rgba(255, 255, 255, .5);margin-left:5px;margin-right:5px;border-bottom:0.25rem solid transparent;"class="nav-link fw-bold py-1 px-0">Planner</button>
             </form>
           </li>
@@ -53,10 +55,12 @@
       <p class="lead fw-normal">여행 가기 전! 나만의 여행 스케줄을 작성해보세요.<br>언제, 어디에서나 편하게!</p>
       <form action="GoCreatePlan" method="post">
       	<input type='hidden' value='<%=email %>' name = "email">
+      	<input type='hidden' value='<%=name %>' name='name'>
       	<button class="btn btn-outline-secondary" style="width:150px;">Create Planner</button>
       </form>
       <form action="GoViewPlan" method="post">
-      <input type='hidden' value='<%=email %>' name = "email">
+      <input type='hidden' value="<%=email %>" name = "email">
+      <input type='hidden' value="<%=name %>" name="name">
       <button class="btn btn-outline-secondary" style="width:150px;">View My Planner</button>
       </form>
     </div>

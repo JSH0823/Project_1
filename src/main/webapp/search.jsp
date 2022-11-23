@@ -97,7 +97,11 @@
       </div>
       </section>
 
-
+<% 
+	///String place = request.getParameter("place");
+ 	//String lat = request.getParameter("lat");
+	//String lng = request.getParameter("lng");
+%>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=de6b6425bc0fad8a53c7e8950b883733&libraries=services"></script>
 <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -416,13 +420,123 @@ map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 var zoomControl = new kakao.maps.ZoomControl();
 map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
+
 var drawingFlag = false; // 선이 그려지고 있는 상태를 가지고 있을 변수입니다
 var moveLine; // 선이 그려지고 있을때 마우스 움직임에 따라 그려질 선 객체 입니다
-var clickLine // 마우스로 클릭한 좌표로 그려질 선 객체입니다
+var moveLine1;
+var clickLine; // 마우스로 클릭한 좌표로 그려질 선 객체입니다
+var clickLine1;
 var distanceOverlay; // 선의 거리정보를 표시할 커스텀오버레이 입니다
 var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지점과 거리를 표시하는 커스텀 오버레이 배열입니다.
+/**
+if(!drawingFlag){
+	
+	drawingFlag = true;
+	
+	clickLine1 = new kakao.maps.Polyline({
+	    map: map, // 선을 표시할 지도입니다 
+	    path: (35.86178792443392, 129.19426508420605), // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
+	    strokeWeight: 3, // 선의 두께입니다 
+	    strokeColor: '#db4040', // 선의 색깔입니다
+	    strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'solid' // 선의 스타일입니다
+	});
+	moveLine1 = new kakao.maps.Polyline({
+	    strokeWeight: 3, // 선의 두께입니다 
+	    strokeColor: '#db4040', // 선의 색깔입니다
+	    strokeOpacity: 0.5, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
+	    strokeStyle: 'solid' // 선의 스타일입니다    
+	});
 
-// 지도에 클릭 이벤트를 등록합니다
+
+	//클릭한 지점에 대한 정보를 지도에 표시합니다
+	displayCircleDot((35.86178792443392, 129.19426508420605), 0);
+}
+//지도에 클릭 이벤트를 등록합니다
+
+ // 그려지고 있는 선의 좌표 배열을 얻어옵니다
+ var path = clickLine1.getPath();
+
+ // 좌표 배열에 클릭한 위치를 추가합니다
+ path.push((35.86343164923601, 129.2068408591337));
+	//alert(clickPosition);
+ 
+ // 다시 선에 좌표 배열을 설정하여 클릭 위치까지 선을 그리도록 설정합니다
+ clickLine1.setPath(path);
+
+ var distance = Math.round(clickLine1.getLength());
+ displayCircleDot((35.86343164923601, 129.2068408591337), distance);
+
+**/
+
+var positions = [
+    {
+        title: '카카오', 
+        latlng: new kakao.maps.LatLng(35.86653912309729, 129.19165081684582)
+    },
+    {
+        title: '생태연못', 
+        latlng: new kakao.maps.LatLng(35.86636380334347, 129.19286365733367)
+    },
+    {
+        title: '텃밭', 
+        latlng: new kakao.maps.LatLng(35.86247693234544, 129.19452760604565)
+    },
+    {
+        title: '근린공원',
+        latlng: new kakao.maps.LatLng(35.86357870280288, 129.184507026832)
+    }
+];
+var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+for (var i = 0; i < positions.length; i ++) {
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(24, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커를 표시할 위치
+        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지 
+    });
+}
+//선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+
+var first_polyline = [
+ 
+new kakao.maps.LatLng(35.86653912309729, 129.19165081684582),
+ 
+new kakao.maps.LatLng(35.86636380334347, 129.19286365733367),
+ 
+new kakao.maps.LatLng(35.86247693234544, 129.19452760604565),
+
+new kakao.maps.LatLng(35.86357870280288, 129.184507026832)
+ 
+];
+ 
+ 
+// 지도에 표시할 선을 생성합니다
+ 
+var first_linePath = new kakao.maps.Polyline({
+ 
+path: first_polyline, // 선을 구성하는 좌표배열 입니다
+ 
+strokeWeight: 3, // 선의 두께 입니다
+ 
+strokeColor: 'black', // 선의 색깔입니다
+ 
+strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+ 
+strokeStyle: 'solid' // 선의 스타일입니다
+ 
+});
+
+first_linePath.setMap(map);
+
 // 지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
 kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 
@@ -453,7 +567,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
             strokeOpacity: 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
             strokeStyle: 'solid' // 선의 스타일입니다
         });
-        
+        alert(clickPosition);
         // 선이 그려지고 있을 때 마우스 움직임에 따라 선이 그려질 위치를 표시할 선을 생성합니다
         moveLine = new kakao.maps.Polyline({
             strokeWeight: 3, // 선의 두께입니다 
@@ -473,6 +587,7 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 
         // 좌표 배열에 클릭한 위치를 추가합니다
         path.push(clickPosition);
+       	alert(clickPosition);
         
         // 다시 선에 좌표 배열을 설정하여 클릭 위치까지 선을 그리도록 설정합니다
         clickLine.setPath(path);

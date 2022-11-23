@@ -40,8 +40,10 @@ public class Goinfo extends HttpServlet {
 		//PrintWriter out = response.getWriter();
 		
 		String email = URLDecoder.decode((String)request.getParameter("email"),"UTF-8");
+		String name = URLDecoder.decode((String)request.getParameter("name"),"UTF-8");
 		//out.print(email);
 		request.setAttribute("email",email);
+		request.setAttribute("name",name);
 		tf.page("planner.jsp");
 	}
 

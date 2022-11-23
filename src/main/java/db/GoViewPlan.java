@@ -39,7 +39,10 @@ public class GoViewPlan extends HttpServlet {
 		//PrintWriter out = response.getWriter();
 		
 		String email = URLDecoder.decode((String)request.getParameter("email"),"UTF-8");
+		String name = URLDecoder.decode((String)request.getParameter("name"),"UTF-8");
+		System.out.println("name2 = "+name);
 		request.setAttribute("email",email);
+		request.setAttribute("name",name);
 		tf.page("viewP.jsp");
 	}
 

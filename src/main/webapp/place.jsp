@@ -23,7 +23,8 @@ button {
 }
 </style>
 <% String email = (String)request.getAttribute("email");
-   String day = (String)request.getAttribute("day");%>
+   String day = (String)request.getAttribute("day");
+   String name = request.getParameter("name");%>
 <!-- <script type="text/javascript">
   	window.onload = function() {
   		today = new Date();
@@ -17803,7 +17804,7 @@ function create_tag_kwangju(){
 			+		"<input type='hidden' value='' name = 'lat' id='lat" +i+"'>"
 			+		"<input type='hidden' value='' name = 'lng' id='lng" +i+"'>"
 			+		"<input type='hidden' value='"+i+"' id = 'num'>"
-			+		"<input type='date' value='2022-11-16' name ='todaybirthday' id='todaybirthday'>\n"
+			+		"<input type='date' value='2022-11-23' name ='todaybirthday' id='todaybirthday'>\n"
 			+      "<input type = 'submit' value = '넣기' onclick='javascript:frm(this.form)'>\n"
 			+ 		"</form>"
 			+        "</div>\n"
@@ -17839,7 +17840,7 @@ function create_tag_incheon(){
 			+		"<input type='hidden' value='' name = 'lat' id='lat" +i+"'>"
 			+		"<input type='hidden' value='' name = 'lng' id='lng" +i+"'>"
 			+		"<input type='hidden' value='"+i+"' id = 'num'>"
-			+		"<input type='date' value='2022-11-16' name ='todaybirthday' id='todaybirthday'>\n"
+			+		"<input type='date' value='2022-11-23' name ='todaybirthday' id='todaybirthday'>\n"
 			+      "<input type = 'submit' value = '넣기' onclick='javascript:frm(this.form)'>\n"
 			+ 		"</form>"
 			+        "</div>\n"
@@ -17865,7 +17866,7 @@ function create_tag_pohang(){
 			+      "<div class='card-body card shadow-sm' style='height:227px;width:90%;'>\n"
 			+      "<p id ='demo"+i+"'></p>\n"
 			+		"<p id = 'addr"+i+"'></p>\n"
-			+		"<p>홈페이지 : </p><p id = 'tel" + i + "'></p>"
+			+		"<p id = 'tel" + i + "'></p>"
 			+		"<form name = 'frm"+i+"' method = 'post' action = 'Planer'>"
 			+		"<input type='hidden' value='' name = 'area' id = 'area"+i+"'>"
 			+		"<input type='hidden' value='' name = 'place' id = 'place"+i+"'>"
@@ -17875,7 +17876,7 @@ function create_tag_pohang(){
 			+		"<input type='hidden' value='' name = 'lat' id='lat" +i+"'>"
 			+		"<input type='hidden' value='' name = 'lng' id='lng" +i+"'>"
 			+		"<input type='hidden' value='"+i+"' id = 'num'>"
-			+		"<input type='date' value='2022-11-16' name ='todaybirthday' id='todaybirthday'>\n"
+			+		"<input type='date' value='2022-11-23' name ='todaybirthday' id='todaybirthday'>\n"
 			+      "<input type = 'submit' value = '넣기' onclick='javascript:frm(this.form)'>\n"
 			+ 		"</form>"
 			+        "</div>\n"
@@ -17915,6 +17916,7 @@ function create_tag_pohang(){
           </li>
           <li class="nav-item">
                <form action="Goinfo" method="post">
+               <input type="hidden" name="name" id="name" value = "<%=name %>">
           	<input type="hidden" name="email" id="email" value = "<%=email %>">
             <button  style="background-color:transparent;border-color:transparent;color:rgba(255, 255, 255, .5);margin-left:5px;margin-right:5px;border-bottom:0.25rem solid transparent;"class="nav-link fw-bold py-1 px-0">Planner</button>
             </form>

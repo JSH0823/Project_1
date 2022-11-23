@@ -89,4 +89,14 @@
     <servlet-name>Delet</servlet-name>
     <url-pattern>/Delet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Marker</display-name>
+    <servlet-name>Marker</servlet-name>
+    <servlet-class>db.Marker</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Marker</servlet-name>
+    <url-pattern>/Marker</url-pattern>
+  </servlet-mapping>
 </web-app>

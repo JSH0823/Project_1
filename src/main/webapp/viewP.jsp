@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import ="db.Db_func" %>
+    <%@ page import ="db.Db_func, java.net.URLDecoder" %>
 <!DOCTYPE html>
 <html>
 <head profile="http://www.w3.org/2005/10/profile">
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>TRAVELER</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <link rel="stylesheet" href="/Web_project1/bootstrap-5.1.3-dist/css/uikit.min.css">
@@ -36,9 +36,14 @@
 		height: 60px;
 		background-color: #7DFE74;}
 </style>
-<% String email = (String)request.getAttribute("email");
-	String day = (String)request.getAttribute("day");%>
-	<%
+<% 
+request.setCharacterEncoding("UTF-8");
+response.setContentType("text/html; charset=UTF-8");
+String email = (String)request.getAttribute("email");
+	String name =(String)request.getAttribute("name");
+	String day = (String)request.getAttribute("day");
+	
+
 		if(day==null){
 			day = " ";
 		}
@@ -62,6 +67,7 @@
           </li>
           <li>
            <form action="Goinfo" method="post">
+             <input type="hidden" name="name" id="name" value = "<%=name %>">
           	<input type="hidden" name="email" id="email" value = "<%=email %>">
             <button  style="background-color:transparent;border-color:transparent;color:rgba(255, 255, 255, .5);margin-left:5px;margin-right:5px;border-bottom:0.25rem solid transparent;"class="nav-link fw-bold py-1 px-0">Planner</button>
             </form>
@@ -92,16 +98,18 @@
   		bir.value = today.value;
   	}-->
   </script>
-			<div style="background-color:lightgray;width:100%;height:100%;padding:10px;">
-				<p>이름 : 정수현</p>
+			<div style="background-color:#F5F5F5;width:100%;height:100%;padding:10px;">
+				<p>이름 : 정수현</p> 
 				<p>E-mail : <%=email %></p>
 				<p>여행 날짜 : <%=day %></p>
 			</div>         
 		<div id="main">
 			<form action="search_day" method="post" style="margin-left:210px;">
       
-					<input type='date' value='2022-11-16' name = "todaybirthday" id = 'todaybirthday'>
+					<input type='date' value='2022-11-23' name = "todaybirthday" id = 'todaybirthday'>
 					<input type='hidden' value='<%=email %>' name = "email" id = 'email'>
+					<input type='hidden' value='<%=name %>' name = "name" id = 'name'>
+					<input type='hidden' value='<%=day %>' name='day' id='day'>
 					<input type="submit" value="검색" >
 				</form>            
 			<jsp:include page="tPlan.jsp"/>       

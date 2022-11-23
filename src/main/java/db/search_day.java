@@ -43,14 +43,18 @@ public class search_day extends HttpServlet {
 		//PrintWriter out = response.getWriter();
 		
 		String day = URLDecoder.decode((String)request.getParameter("todaybirthday"),"UTF-8");
+		String day1 = URLDecoder.decode((String)request.getParameter("day"),"UTF-8");
 		String email = URLDecoder.decode((String)request.getParameter("email"),"UTF-8");
+		String name = URLDecoder.decode((String)request.getParameter("name"),"UTF-8");
 		
 		Db_func df = new Db_func();
 		df.db_connection();
 		ResultSet rs = df.schedule_search_day(day, email);
 		request.setAttribute("rs", rs);
 		request.setAttribute("email", email);
+		request.setAttribute("name", name);
 		request.setAttribute("day",day);
+		request.setAttribute("day1",day1);
 		tf.page("viewP.jsp");
 	}
 

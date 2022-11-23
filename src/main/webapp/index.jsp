@@ -251,9 +251,6 @@ body {
     	if(email == null) {
     		name = "로그인해주세요";
     	}
-    	else if(email != null){
-    		name = name + "님 어서오세요";
-    	}
     %>
     
 
@@ -271,6 +268,7 @@ body {
         <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
         <form action="Goinfo" method="post">
         	<input type="hidden" name="email" id="email" value = "<%=email %>">
+        	<input type="hidden" name="name" id="name" value = "<%=name %>">
         	<button  style="background-color:transparent;border-color:transparent;color:rgba(255, 255, 255, .5);margin-left:5px;margin-right:5px;border-bottom:0.25rem solid transparent;"class="nav-link fw-bold py-1 px-0">Planner</button>
         </form>
         <a class="nav-link fw-bold py-1 px-0" href="search.jsp">Search</a>
